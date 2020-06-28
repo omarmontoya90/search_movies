@@ -1,0 +1,13 @@
+version: '3'
+services:
+  web:
+    image: omarmontoya90/search_movies:v1
+    stdin_open: true
+    tty: true
+    ports:
+      - 3000:3000
+    volumes: 
+      - ./:/search_movies
+    command:
+      - default
+
