@@ -4,6 +4,7 @@ import 'bulma/css/bulma.css'
 
 import {Title}      from './components/Title'
 import {SearchForm} from './components/SearchForm'
+import MoviesList   from './components/MoviesList'
 
 function App() {
   const [movies, setMovies] = useState([]);
@@ -11,14 +12,6 @@ function App() {
   const handleResults = (results) => {
     setMovies(results)
   }
-
-  const renderResults = () => {
-    return ( movies.map( movie => {
-        return <p key={movie.imdbID}>{movie.Title}</p>
-      })
-    )
-  }
-
 
   return (
     <div className="App">
@@ -28,7 +21,7 @@ function App() {
       </div>
       { movies.length === 0
         ? <p> Without movies</p>
-        : renderResults()
+        : <MoviesList movies={movies}/>
       }
     </div>
   );
