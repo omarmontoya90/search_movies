@@ -1,48 +1,22 @@
-import React, {useState} from 'react';
+import React from 'react';
 import './App.css';
 import 'bulma/css/bulma.css'
 
-import {Title}      from './components/Title'
-import {SearchForm} from './components/SearchForm'
-import MoviesList   from './components/MoviesList'
 import {Detail}     from './pages/Detail'
+import Home       from './pages/Home'
 
 function App() {
-  const [movies, setMovies] = useState([])
-  const [usedSearch, setUsedSearch] = useState(false)
-
-  const handleResults = (results) => {
-    setMovies(results)
-    setUsedSearch(true)
-  }
-
-  const renderResults = () => {
-    return  movies.length === 0
-      ? <p> Without movies</p>
-      : <MoviesList movies={movies}/>
-  }
 
   const url = new URL(document.location)
-  const hasId = url.searchParams.has('id')
+  const Page = url.searchParams.has('id')
+    ? <Detail id={url.searchParams.get('id')}/>
+    : <Home />
 
-  var page = null
-  if (hasId) {
-     page =  <Detail id={url.searchParams.get('id')}/>
-  } else {
-    page =
-      <div className="App">
-        <Title>Search Movies</Title>
-        <div className="SearchForm-wrapper">
-          <SearchForm onResults={handleResults}/>
-        </div>
-        { usedSearch
-          ? renderResults()
-          : <small>Use the form to search a movie</small>
-        }
-      </div>
-  }
-
-  return page
+  return (
+    <div className="App">
+      {Page}
+    </div>
+  )
 }
 
 export default App;
