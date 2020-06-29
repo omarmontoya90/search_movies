@@ -7,10 +7,18 @@ import {SearchForm} from './components/SearchForm'
 import MoviesList   from './components/MoviesList'
 
 function App() {
-  const [movies, setMovies] = useState([]);
+  const [movies, setMovies] = useState([])
+  const [usedSearch, setUsedSearch] = useState(false)
 
   const handleResults = (results) => {
     setMovies(results)
+    setUsedSearch(true)
+  }
+
+  const renderResults = () => {
+    return  movies.length === 0
+      ? <p> Without movies</p>
+      : <MoviesList movies={movies}/>
   }
 
   return (
@@ -19,9 +27,9 @@ function App() {
       <div className="SearchForm-wrapper">
         <SearchForm onResults={handleResults}/>
       </div>
-      { movies.length === 0
-        ? <p> Without movies</p>
-        : <MoviesList movies={movies}/>
+      { usedSearch
+	? renderResults()
+	: <small>Use the form to search a movie</small>
       }
     </div>
   );
