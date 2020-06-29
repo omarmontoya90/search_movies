@@ -1,24 +1,35 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, {useState} from 'react';
 import './App.css';
+import 'bulma/css/bulma.css'
+
+import {Title}      from './components/Title'
+import {SearchForm} from './components/SearchForm'
 
 function App() {
+  const [movies, setMovies] = useState([]);
+
+  const handleResults = (results) => {
+    setMovies(results)
+  }
+
+  const renderResults = () => {
+    return ( movies.map( movie => {
+        return <p key={movie.imdbID}>{movie.Title}</p>
+      })
+    )
+  }
+
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Search Movies
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Title>Search Movies</Title>
+      <div className="SearchForm-wrapper">
+        <SearchForm onResults={handleResults}/>
+      </div>
+      { movies.length === 0
+        ? <p> Without movies</p>
+        : renderResults()
+      }
     </div>
   );
 }
