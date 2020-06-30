@@ -36,11 +36,15 @@ export class Detail extends Component {
     return (
       <div>
         <ButtonBackToHome />
-        <h1>{Title}</h1>
-        <img src={Poster} alt={Title}/>
-        <h3>{Actors}</h3>
-        <span>{Metascore}</span>
-        <p>{Plot}</p>
+        <br/>
+        <div className="detail-movie">
+          <h1 className="title">{Title}</h1>
+          <img src={Poster} alt={Title}/>
+          <p className="subtitle">{Plot}</p>
+          <h3 className="subtitle">{Actors}</h3>
+          <p>Score</p>
+          <progress className="progress is-primary is-medium" value={Metascore} max="100">{Metascore}%</progress>
+        </div>
       </div>
     )
   }

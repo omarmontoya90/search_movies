@@ -19,3 +19,14 @@
   width: 48%;
   margin-bottom: 24px;
 }
+
+.detail-movie {
+  width: 50%;
+  display: inline-block;
+  justify-content: center;
+  margin: 20px;
+  padding: 10px;
+  border: 2px solid #e0e0e0;
+  border-radius: 5px;
+  box-shadow: 10px 10px 17px 0px rgba(0,0,0,0.45);
+}
